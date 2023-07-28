@@ -28,7 +28,7 @@ public final class TemplateParser {
     private final CodeResolver codeResolver;
 
     private Mode currentMode;
-    private Mode previousControlStructureTrimmed;
+    private Mode prevControlStructureTrimmed;
     private List<Mode> initialModes;
     private HtmlTag currentHtmlTag;
     private int depth;
@@ -488,10 +488,10 @@ public final class TemplateParser {
         if (LineInfo.isSingleControlStructure(templateCode, endIndex, this.endIndex, lastLineIndex, mode)) {
             lastTrimmedIndex = templateCode.indexOf('\n', endIndex) + 1;
             extractTrimmed(startIndex, lastLineIndex);
-            previousControlStructureTrimmed = mode;
+            prevControlStructureTrimmed = mode;
         } else {
             extractTrimmed(startIndex, endIndex);
-            previousControlStructureTrimmed = null;
+            prevControlStructureTrimmed = null;
         }
 
         if (mode == Mode.Condition || mode == Mode.ForLoop || mode == Mode.Raw) {
@@ -513,7 +513,7 @@ public final class TemplateParser {
         int line = 0;
         boolean writeLine = false;
         boolean firstNonWhitespaceReached = false;
-        if (previousControlStructureTrimmed == null) {
+        if (prevControlStructureTrimmed == null) {
             firstNonWhitespaceReached = true;
             writeLine = true;
         }

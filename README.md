@@ -16,6 +16,12 @@
 - Hot reloading of templates during development
 - Blazing fast execution ([see benchmarks](#performance))
 
+## How to compile
+
+- With Maven 3.9+ installed, clone the repository
+- Navigate to the project's home directory, jte/
+- Run "mvn clean install" on the command line
+
 ## TLDR
 
 jte gives you the same productive, type safe experience you're used to from writing Java or Kotlin. This is IntelliJ with the <a href="https://plugins.jetbrains.com/plugin/14521-jte">jte plugin</a> installed:
